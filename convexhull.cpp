@@ -31,7 +31,7 @@ int n, t;
 vector<Point> hull, a;
 void convexhull(){
     vector<Point> f;
-    Point low = a[min_element(a.begin(), a.end()) - a.begin()];
+    Point low = *(min_element(a.begin(), a.end()));
     hull.pb(low), t = 1;
     for(int i = 0;i < n;++i)if(a[i] != low)f.pb(a[i]);
     sort(f.begin(), f.end(), [&](Point u,Point v){
