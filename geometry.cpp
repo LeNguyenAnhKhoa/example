@@ -12,6 +12,13 @@ struct Point {
 
     Point conj() { return Point(x, -y); }
     int norm() { return x*x + y*y; }
+    
+    bool operator <(const Point &a){
+        return a.x == x ? y < a.y : x < a.x;
+    }
+    bool operator !=(const Point &a){
+        return x != a.x || y != a.y;
+    }
 };
 
 int ccw(Point a, Point b, Point c) {
