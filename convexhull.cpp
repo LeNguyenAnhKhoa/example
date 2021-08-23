@@ -27,23 +27,28 @@ struct Point {
 int ccw(Point a, Point b, Point c) {
     return (b - a) % (c - a);
 }
-int n;
+int n, t;
+vector<Point> hull, a;
+void convexhull(){
+    vector<Point> f;
+    Point low = a[min_element(a.begin(), a.end()) - a.begin()];
+    hull.pb(low), t = 1;
+    for(int i = 0;i < n;++i)if(a[i] != low)f.pb(a[i]);
+    sort(f.begin(), f.end(), [&](Point u,Point v){
+        int t = ccw(low, u, v);
+        return t != 0 ? t > 0 : (u - low).norm() < (v - low).norm();
+    });
+    for(Point i : f){
+        while(t > 1 && ccw(hull[t-2], hull.back(), i) <= 0)
+            hull.pop_back(), t--;
+        hull.pb(i), t++;
+    }
+}
 signed main(){
     ios_base::sync_with_stdio(false);
     cin.tie(0);cout.tie(0);
 //    freopen("c.inp","r",stdin);
-    cin >> n; vector<Point> a(n); int t = 1;
+    cin >> n; a.resize(n);
     for(Point &i : a)cin >> i.x >> i.y;
-    int low = min_element(a.begin(), a.end()) - a.begin();
-    vector<int> f, hull{low};
-    for(int i = 0;i < n;++i)if(a[i] != a[low])f.pb(i);
-    sort(f.begin(), f.end(), [&](int u,int v){
-        int t = ccw(a[low], a[u], a[v]);
-        return t != 0 ? t > 0 : (a[u] - a[low]).norm() < (a[v] - a[low]).norm();
-    });
-    for(auto i : f){
-        while(t > 1 && ccw(a[hull[t-2]], a[hull.back()], a[i]) <= 0)
-            hull.pop_back(), t--;
-        hull.pb(i), t++;
-    }
+    convexhull();
 }
