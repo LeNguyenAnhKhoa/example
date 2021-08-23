@@ -15,5 +15,5 @@ struct Point {
 };
 
 int ccw(Point a, Point b, Point c) {
-    return cmp(b - a) % (c - a);
+    return (b - a) % (c - a);
 }
