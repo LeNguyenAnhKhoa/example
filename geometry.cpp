@@ -19,6 +19,9 @@ struct Point {
     bool operator !=(const Point &a){
         return x != a.x || y != a.y;
     }
+    bool operator ==(const Point &a){
+        return x == a.x && y == a.y;
+    }
 };
 
 ///left: ccw > 0
