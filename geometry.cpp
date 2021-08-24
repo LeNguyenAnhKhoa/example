@@ -21,6 +21,8 @@ struct Point {
     }
 };
 
+///left: ccw > 0
+///right: ccw < 0
 int ccw(Point a, Point b, Point c) {
     return (b - a) % (c - a);
 }
