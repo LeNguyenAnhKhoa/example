@@ -5,6 +5,7 @@ struct Lazy_Seg{
             st[id] = a[l];
             return;
         }
+        int mid = l + r >> 1;
         build(id<<1, l, mid, a);
         build(id<<1|1, mid+1, r, a);
         st[id] = st[id<<1] + st[id<<1|1];
