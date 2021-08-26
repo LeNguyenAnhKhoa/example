@@ -1,8 +1,8 @@
-int n, jump[18][100005], a[100005];
+int n, jump[16][100005], a[100005];
 
 void init(){
-    for(int i = 0;i < n;++i)jump[0][i] = a[i];
-    for(int i = 1;1<<i <= n;++i)for(int j = 0;j + (1<<i) - 1 < n;++j)
+    for(int i = 1;i <= n;++i)jump[0][i] = a[i];
+    for(int i = 1;i <= 16;++i)for(int j = 1;j + (1<<i) - 1 <= n;++j)
         jump[i][j] = min(jump[i-1][j], jump[i-1][j+(1<<(i-1))]);
 }
 
