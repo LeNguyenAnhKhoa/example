@@ -7,7 +7,7 @@ struct trie{
         for(int i = 0;i < 26;++i)
             nx[i] = NULL;
     }
-}*root;
+}*root = new trie();
 void add(string s){
      trie *node = root;
      for(int i = 0;i < SZ(s);++i){
