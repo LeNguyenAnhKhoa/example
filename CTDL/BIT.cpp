@@ -4,13 +4,13 @@ struct BIT{
         for(;i <= 1e5;i += i&-i)
             bit[i] += x;
     }
-    int query(int i){
+    int get(int i){
         int res = 0;
         for(;i > 0;i -= i&-i)
             res += bit[i];
         return res;
     }
-    int range(int l,int r){
+    int get(int l,int r){
         return query(r) - query(l-1);
     }
 };
