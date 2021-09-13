@@ -14,6 +14,6 @@ struct IT{
         if(l > v or r < u)return 0;
         if(u <= l && r <= v)return st[id];
         int mid = l + r >> 1;
-        return query(id<<1, l, mid, u, v) + query(id<<1|1, mid+1, r, u, v);
+        return get(id<<1, l, mid, u, v) + get(id<<1|1, mid+1, r, u, v);
     }
 };
