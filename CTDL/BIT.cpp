@@ -11,6 +11,6 @@ struct BIT{
         return res;
     }
     int get(int l,int r){
-        return query(r) - query(l-1);
+        return get(r) - get(l-1);
     }
 };
