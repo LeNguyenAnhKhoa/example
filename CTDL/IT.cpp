@@ -10,7 +10,7 @@ struct IT{
         else update(id<<1|1, mid+1, r, i, val);
         st[id] = st[id<<1] + st[id<<1|1];
     }
-    int query(int id,int l,int r,int u,int v){
+    int get(int id,int l,int r,int u,int v){
         if(l > v or r < u)return 0;
         if(u <= l && r <= v)return st[id];
         int mid = l + r >> 1;
