@@ -6,7 +6,7 @@ struct BIT{
     }
     int get(int i){
         int res = 0;
-        for(;i > 0;i -= i&-i)
+        for(;i > 0;i ^= i&-i)
             res += bit[i];
         return res;
     }
