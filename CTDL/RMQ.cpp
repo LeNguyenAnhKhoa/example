@@ -1,4 +1,4 @@
-int n, jump[16][100005], a[100005];
+int n, jump[17][100005], a[100005];
 
 void init(){
     for(int i = 1;i <= n;++i)jump[0][i] = a[i];
