@@ -37,6 +37,6 @@ struct Lazy_Seg{
         if(u <= l && r <= v)return st[id];
         push(id, l, r);
         int mid = l + r >> 1;
-        return get(u, v, id<<1, l, mid) + query(u, v, id<<1|1, mid+1, r);
+        return get(u, v, id<<1, l, mid) + get(u, v, id<<1|1, mid+1, r);
     }
 };
