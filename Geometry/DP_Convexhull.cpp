@@ -1,13 +1,15 @@
 #define int long long
-const int INF = 2e18;
 int mode;
 struct Line{
-    mutable int a, b; mutable double k;
+    mutable int a, b, k;
     bool operator<(const Line &p)const{return mode ? k < p.k : a < p.a;}
 };
 struct ConvexHull{
     multiset<Line> s;
-    double div(int x,int y){return 1.0 * x / y;}
+    const int INF = 2e18;
+    int div(int a,int b){
+        return a / b - ((a ^ b) < 0 && a % b);
+    }
     template<class T>bool isect(T x,T y) {
         if(y == s.end()){x->k = INF; return 0;}
         if(x->a == y->a) x->k = (x->b >= y->b ? INF : -INF);
@@ -20,7 +22,7 @@ struct ConvexHull{
         if(x != s.begin() && isect(--x,y)) isect(x, s.erase(y));
         while((y = x) != s.begin() && isect(--x,y)) isect(x, s.erase(y));
     }
-    int query(int x) {
+    int get(int x) {
         mode = 1;
         auto pos = s.lower_bound({0, 0, x});
         mode = 0;
