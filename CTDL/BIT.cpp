@@ -1,7 +1,8 @@
+int n;
 struct BIT{
     int bit[100005];
     void update(int i,int x){
-        for(;i <= 1e5;i += i&-i)
+        for(;i <= n;i += i&-i)
             bit[i] += x;
     }
     int get(int i){
