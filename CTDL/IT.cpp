@@ -1,6 +1,6 @@
 struct IT{
     int st[400005];
-    void update(int i,int val,int id = 1,int l = 1,int r = n){
+    void add(int i,int val,int id = 1,int l = 1,int r = n){
         if(l == r){
             st[id] = val;
             return;
