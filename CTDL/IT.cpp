@@ -6,8 +6,8 @@ struct IT{
             return;
         }
         int mid = l + r >> 1;
-        if(i <= mid)update(i, val, id<<1, l, mid);
-        else update(i, val, id<<1|1, mid+1, r);
+        if(i <= mid)add(i, val, id<<1, l, mid);
+        else add(i, val, id<<1|1, mid+1, r);
         st[id] = max(st[id<<1], st[id<<1|1]);
     }
     int get(int u,int v,int id = 1,int l = 1,int r = n){
