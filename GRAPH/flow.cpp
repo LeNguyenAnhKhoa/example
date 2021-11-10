@@ -1,6 +1,8 @@
 #define pb push_back
 #define SZ(x) (int)((x).size())
-struct edge{int u, v, cap, flow;};
+struct edge{
+    int u, v, cap, flow;
+};
 int n, s, t, m, cur[1005], d[1005];
 vector<int> a[1005];
 vector<edge> e;
