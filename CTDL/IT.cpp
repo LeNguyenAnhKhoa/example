@@ -2,7 +2,7 @@ const int N = 1e5 + 5;
 int n;
 struct IT{
     int st[4*N];
-    void add(int i,int val,int id = 1,int l = 1,int r = n){
+    void add(int i, int val, int id = 1, int l = 1, int r = n){
         if(l == r){
             st[id] = val;
             return;
@@ -12,7 +12,7 @@ struct IT{
         else add(i, val, id<<1|1, mid+1, r);
         st[id] = max(st[id<<1], st[id<<1|1]);
     }
-    int get(int u,int v,int id = 1,int l = 1,int r = n){
+    int get(int u, int v, int id = 1, int l = 1, int r = n){
         if(l > v or r < u)return 0;
         if(u <= l && r <= v)return st[id];
         int mid = l + r >> 1;
