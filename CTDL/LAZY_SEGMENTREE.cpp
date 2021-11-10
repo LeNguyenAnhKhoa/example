@@ -1,5 +1,7 @@
+const int N = 1e5 + 5;
+int n;
 struct Lazy_Seg{
-    int st[400005], lz[400005];
+    int st[4*N], lz[4*N];
     void build(int a[], int id = 1,int l = 1,int r = n){
         if(l == r){
             st[id] = a[l];
@@ -19,7 +21,7 @@ struct Lazy_Seg{
         lz[id<<1|1] += lz[id];
         lz[id] = 0;
     }
-    void update(int u,int v,int val, int id = 1,int l = 1,int r = n){
+    void add(int u,int v,int val, int id = 1,int l = 1,int r = n){
         if(l > v || r < u)return;
         if(u <= l && r <= v){
             st[id] += val;
