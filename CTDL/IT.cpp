@@ -1,5 +1,7 @@
+const int N = 1e5 + 5;
+int n;
 struct IT{
-    int st[400005];
+    int st[4*N];
     void add(int i,int val,int id = 1,int l = 1,int r = n){
         if(l == r){
             st[id] = val;
