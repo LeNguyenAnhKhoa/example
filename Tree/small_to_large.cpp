@@ -8,10 +8,11 @@ template<class T> using Tree = tree<T,null_type,less<T>,rb_tree_tag,tree_order_s
 #include<tr1/unordered_map>
 #define pb push_back
 #define SZ(x) (int)((x).size())
-int n, ans[200005], d[200005];
-vector<int> a[200005];
-Tree<int> s[200005];
-void DFS(int u,int p){
+const int N = 2e5 + 5;
+int n, ans[N], d[N];
+vector<int> a[N];
+Tree<int> s[N];
+void DFS(int u, int p){
     s[u].insert(d[u]);
     for(auto v : a[u])if(v != p){
         DFS(v,u);
@@ -28,8 +29,9 @@ signed main(){
     for(int i = 1;i <= n;++i)cin >> d[i];
     for(int i = 1;i < n;++i){
         int u, v; cin >> u >> v;
-        a[u].pb(v); a[v].pb(u);
+        a[u].pb(v), a[v].pb(u);
     }
     DFS(1,0);
-    for(int i = 1;i <= n;++i)cout << ans[i] << " ";
+    for(int i = 1;i <= n;++i)
+        cout << ans[i] << " ";
 }
