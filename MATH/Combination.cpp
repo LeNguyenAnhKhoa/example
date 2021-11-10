@@ -1,7 +1,8 @@
 #define int long long
 const int mod = 1e9 + 7;
-int fac[100005], n, ifac[100005];
-int pw(int a,int n){
+const int N = 1e5 + 5;
+int fac[N], n, ifa[N];
+int pw(int a, int n){
     if(n == 1)return a;
     int tmp = pw(a, n/2);
     if(n&1)return tmp * tmp % mod * a % mod;
