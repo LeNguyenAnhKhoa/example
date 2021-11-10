@@ -1,24 +1,21 @@
-const int bl = 282;
+const int N = 1e5 + 5;
+const int bl = sqrt(N);
 struct qr{
     int l, r, lca, i;
-    bool operator <(const qr &a)const{
+    bool operator <(const qr &a) const{
         return l/bl == a.l/bl ? r < a.r : l < a.l;
     }
-}f[100005];
+}f[N];
 
-int n, q, c[40005], jump[18][40005], d[100005], vis[40005];
-int st[40005], en[40005], j, a[80005], mp[40005];
-vector<int> adj[40005];
-
+int n, q, c[N], jump[17][N], d[N], vis[N], st[N], en[N], j, a[N*2], mp[N];
+vector<int> adj[N];
 void DFS(int u){
     st[u] = ++j;
     a[j] = u;
-    for(int i = 1;1<<i <= n;++i)jump[i][u] = jump[i-1][jump[i-1][u]];
-    for(auto v : adj[u])if(v != jump[0][u]){
-        jump[0][v] = u;
-        d[v] = d[u] + 1;
-        DFS(v);
-    }
+    for(int i = 1;1<<i <= n;++i)
+        jump[i][u] = jump[i-1][jump[i-1][u]];
+    for(auto v : adj[u])if(v != jump[0][u])
+        jump[0][v] = u, d[v] = d[u] + 1, DFS(v);
     en[u] = ++j;
     a[j] = u;
 }
@@ -26,12 +23,11 @@ void DFS(int u){
 int lca(int u,int v){
     if(d[u] < d[v])swap(u, v);
     int diff = d[u] - d[v];
-    for(int i = 17;i >= 0;--i)if(diff>>i&1)u = jump[i][u];
+    for(int i = log2(n);i >= 0;--i)
+        if(diff>>i&1)u = jump[i][u];
     if(u == v)return u;
-    for(int i = 17;i >= 0;--i)if(jump[i][u] != jump[i][v]){
-        u = jump[i][u];
-        v = jump[i][v];
-    }
+    for(int i = log2(n);i >= 0;--i)if(jump[i][u] != jump[i][v])
+        u = jump[i][u], v = jump[i][v];
     return jump[0][u];
 }
 
