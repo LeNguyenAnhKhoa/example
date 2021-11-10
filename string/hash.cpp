@@ -2,8 +2,9 @@
 
 const ll mod = 1e9 + 7; //998244353
 const ll base = 31; //311
+const int N = 1e5 + 5;
 
-ll n, hsh[100005];
+ll n, hsh[N];
 string s;
 
 /// thay đổi kí tự ở vị trí vis từ from -> to và
