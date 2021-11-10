@@ -1,7 +1,8 @@
+const int N = 1e5 + 5;
 int n;
 struct BIT{
-    int bit[100005];
-    void update(int i,int x){
+    int bit[N];
+    void add(int i,int x){
         for(;i <= n;i += i&-i)
             bit[i] += x;
     }
