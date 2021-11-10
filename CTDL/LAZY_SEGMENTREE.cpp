@@ -2,7 +2,7 @@ const int N = 1e5 + 5;
 int n;
 struct Lazy_Seg{
     int st[4*N], lz[4*N];
-    void build(int a[], int id = 1,int l = 1,int r = n){
+    void build(int a[], int id = 1, int l = 1, int r = n){
         if(l == r){
             st[id] = a[l];
             return;
@@ -12,7 +12,7 @@ struct Lazy_Seg{
         build(a, id<<1|1, mid+1, r);
         st[id] = st[id<<1] + st[id<<1|1];
     }
-    void push(int id,int l,int r){
+    void push(int id, int l, int r){
         if(lz[id] == 0)return;
         int mid = l + r >> 1;
         st[id<<1] += lz[id];
@@ -21,7 +21,7 @@ struct Lazy_Seg{
         lz[id<<1|1] += lz[id];
         lz[id] = 0;
     }
-    void add(int u,int v,int val, int id = 1,int l = 1,int r = n){
+    void add(int u, int v, int val, int id = 1, int l = 1, int r = n){
         if(l > v || r < u)return;
         if(u <= l && r <= v){
             st[id] += val;
@@ -34,7 +34,7 @@ struct Lazy_Seg{
         update(u, v, val, id<<1|1, mid+1, r);
         st[id] = st[id<<1] + st[id<<1|1];
     }
-    int get(int u,int v,int id = 1,int l = 1,int r = n){
+    int get(int u, int v, int id = 1, int l = 1, int r = n){
         if(l > v or r < u)return 0;
         if(u <= l && r <= v)return st[id];
         push(id, l, r);
