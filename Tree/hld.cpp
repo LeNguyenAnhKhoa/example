@@ -1,12 +1,12 @@
-int n, sz[200005], d[200005], cha[200005];
-int head[200005], pos[200005], cnt;
-vector<int> a[200005];
+const int N = 2e5 + 5;
+int n, sz[N], d[N], p[N], head[N], pos[N], cnt;
+vector<int> a[N];
 
 void DFS(int u){
     sz[u] = 1;
-    for(int v : a[u])if(v != cha[u]){
+    for(int v : a[u])if(v != p[u]){
         d[v] = d[u] + 1;
-        cha[v] = u;
+        p[v] = u;
         DFS(v);
         sz[u] += sz[v];
     }
