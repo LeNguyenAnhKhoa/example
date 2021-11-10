@@ -2,8 +2,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define pb push_back
-int n, sz[200005], q, d[200005], c[200005], p[200005], head[200005], pos[200005], j;
-vector<int> a[200005];
+const int N = 2e5 + 5;
+int n, sz[N], q, d[N], c[N], p[N], head[N], pos[N], j;
+vector<int> a[N];
 void DFS(int u){
     sz[u] = 1;
     for(auto v : a[u])if(v != p[u]){
@@ -14,8 +15,8 @@ void DFS(int u){
     }
 }
 struct IT{
-    int st[400005];
-    void add(int i,int val,int id = 1,int l = 1,int r = n){
+    int st[4*N];
+    void add(int i, int val, int id = 1, int l = 1, int r = n){
         if(l == r){
             st[id] = val;
             return;
@@ -25,14 +26,14 @@ struct IT{
         else add(i, val, id<<1|1, mid+1, r);
         st[id] = max(st[id<<1], st[id<<1|1]);
     }
-    int get(int u,int v,int id = 1,int l = 1,int r = n){
+    int get(int u, int v, int id = 1, int l = 1, int r = n){
         if(l > v or r < u)return 0;
         if(u <= l && r <= v)return st[id];
         int mid = l + r >> 1;
         return max(get(u, v, id<<1, l, mid), get(u, v, id<<1|1, mid+1, r));
     }
 }st;
-void hld(int u,int top){
+void hld(int u, int top){
     pos[u] = ++j;
     head[u] = top;
     st.add(j, c[u]);
@@ -43,7 +44,7 @@ void hld(int u,int top){
     hld(best, top);
     for(auto v : a[u])if(v != p[u] && v != best)hld(v, v);
 }
-int path(int u,int v){
+int path(int u, int v){
     int res = 0;
     while(head[u] != head[v]){
         if(d[head[u]] < d[head[v]])swap(u,v);
@@ -62,7 +63,7 @@ signed main(){
     for(int i = 1;i <= n;++i)cin >> c[i];
     for(int i = 1;i < n;++i){
         int u, v; cin >> u >> v;
-        a[u].pb(v); a[v].pb(u);
+        a[u].pb(v), a[v].pb(u);
     }
     DFS(1), hld(1, 1);
     while(q--){
