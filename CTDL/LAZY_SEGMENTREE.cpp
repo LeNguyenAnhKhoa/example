@@ -30,8 +30,8 @@ struct Lazy_Seg{
         }
         push(id, l, r);
         int mid = l + r >> 1;
-        update(u, v, val, id<<1, l, mid);
-        update(u, v, val, id<<1|1, mid+1, r);
+        add(u, v, val, id<<1, l, mid);
+        add(u, v, val, id<<1|1, mid+1, r);
         st[id] = st[id<<1] + st[id<<1|1];
     }
     int get(int u, int v, int id = 1, int l = 1, int r = n){
