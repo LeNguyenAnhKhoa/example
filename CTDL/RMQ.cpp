@@ -1,9 +1,10 @@
+#define FOR(i, l, r) for(int i = l;i <= r;++i)
 const int N = 1e5 + 5;
 int n, f[17][N], a[N];
 
 void init(){
-    for(int i = 1;i <= n;++i)f[0][i] = a[i];
-    for(int i = 1;1<<i <= n;++i)for(int j = 1;j + (1<<i) - 1 <= n;++j)
+    FOR(i, 1, n)f[0][i] = a[i];
+    FOR(i, 1, log2(n))FOR(j, 1, n-(1<<i)+1)
         f[i][j] = min(f[i-1][j], f[i-1][j+(1<<(i-1))]);
 }
 
