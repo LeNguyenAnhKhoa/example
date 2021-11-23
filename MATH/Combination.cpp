@@ -1,7 +1,7 @@
 #define int long long
 const int mod = 1e9 + 7;
 const int N = 1e5 + 5;
-int fac[N], n, ifa[N];
+int fac[N], n, ifac[N];
 int pw(int a, int n){
     if(n == 1)return a;
     int tmp = pw(a, n/2);
