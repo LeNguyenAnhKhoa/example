@@ -31,14 +31,11 @@ struct Point {
         return x == a.x && y == a.y;
     }
 };
-
-
 ///left: ccw > 0
 ///right: ccw < 0
 int ccw(Point a, Point b, Point c) {
     return (b - a) % (c - a);
 }
-
 int S(Point a, Point b, Point c){
     return abs((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) / 2;
 }
