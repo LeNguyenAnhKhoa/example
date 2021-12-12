@@ -34,12 +34,12 @@ struct Lazy_Seg{
         add(u, v, val, id<<1|1, mid+1, r);
         st[id] = st[id<<1] + st[id<<1|1];
     }
-    int get(int u, int v, int id = 1, int l = 1, int r = n){
+    int query(int u, int v, int id = 1, int l = 1, int r = n){
         if(l > v or r < u)return 0;
         if(u <= l && r <= v)return st[id];
         push(id, l, r);
         int mid = l + r >> 1;
-        return get(u, v, id<<1, l, mid) + get(u, v, id<<1|1, mid+1, r);
+        return query(u, v, id<<1, l, mid) + query(u, v, id<<1|1, mid+1, r);
     }
     int get(int i, int id = 1, int l = 1, int r = n){
         if(l == r)return st[id];
