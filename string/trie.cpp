@@ -1,28 +1,35 @@
 #define SZ(x) (int)((x).size())
 struct trie{
-    bool leaf;
-    trie *nx[26];
-    trie(){
-        leaf = false;
-        for(int i = 0;i < 26;++i)
-            nx[i] = NULL;
+    struct node{
+        int nx[26];
+        bool leaf;
+        node(){
+            leaf = 0;
+            rep(i, 26)
+                nx[i] = 0;
+        }
+    };
+    vector<node> a;
+    trie() { a.pb(node()); }
+    void add(string s){
+        int cur = 0;
+        for(auto c : s){
+            int i = c - 'a';
+            if(a[cur].nx[i] == 0){
+                a[cur].nx[i] = SZ(a);
+                a.pb(node());
+            }
+            cur = a[cur].nx[i];
+        }
+        a[cur].leaf = 1;
     }
-}*root = new trie();
-void add(string s){
-     trie *node = root;
-     for(int i = 0;i < SZ(s);++i){
-        if(node->nx[s[i]-'a'] == NULL)
-            node->nx[s[i]-'a'] = new trie();
-        node = node->nx[s[i]-'a'];
-     }
-     node->leaf = true;
-}
-bool tim(string s){
-    trie* node = root;
-    for(int i = 0;i < SZ(s);++i){
-        if(node->nx[s[i]-'a'] == NULL)
-            return false;
-        node = node->nx[s[i]-'a'];
+    bool get(string s){
+        int cur = 0;
+        for(auto c : s){
+            int i = c - 'a';
+            if(!a[cur].nx[i])return 0;
+            cur = a[cur].nx[i];
+        }
+        return 1;
     }
-    return true;
-}
+};
