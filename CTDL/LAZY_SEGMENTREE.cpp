@@ -21,6 +21,17 @@ struct Lazy_Seg{
         lz[id<<1|1] += lz[id];
         lz[id] = 0;
     }
+    void upd(int i, int val, int id = 1, int l = 1, int r = n){
+        if(l == r){
+            st[id] = val;
+            return;
+        }
+        push(id, l, r);
+        int mid = l + r >> 1;
+        if(i <= mid)upd(i, val, id<<1, l, mid);
+        else upd(i, val, id<<1|1, mid+1, r);
+        st[id] = st[id<<1] + st[id<<1|1];
+    }
     void add(int u, int v, int val, int id = 1, int l = 1, int r = n){
         if(l > v || r < u)return;
         if(u <= l && r <= v){
