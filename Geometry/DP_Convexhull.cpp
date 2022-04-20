@@ -22,6 +22,7 @@ struct LineContainer : multiset<Line, less<>> {
         if (x != begin() && isect(--x, y)) isect(x, y = erase(y));
         while ((y = x) != begin() && (--x)->p >= y->p) isect(x, erase(y));
     }
+/// return max(y)
     ll get(ll x){
         assert(!empty());
         auto l = *lower_bound(x);
