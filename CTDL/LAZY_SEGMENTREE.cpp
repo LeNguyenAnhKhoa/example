@@ -2,24 +2,25 @@ const int N = 1e5 + 5;
 int n;
 struct Lazy_Seg{
     int st[4*N], lz[4*N];
-    void build(int a[], int id = 1, int l = 1, int r = n){
+    void build(int id = 1, int l = 1, int r = n){
         if(l == r){
             st[id] = a[l];
             return;
         }
         int mid = l + r >> 1;
-        build(a, id<<1, l, mid);
-        build(a, id<<1|1, mid+1, r);
+        build(id<<1, l, mid);
+        build(id<<1|1, mid+1, r);
         st[id] = st[id<<1] + st[id<<1|1];
     }
     void push(int id, int l, int r){
-        if(lz[id] == 0)return;
+        int &x = lz[id];
+        if(s == 0)return;
         int mid = l + r >> 1;
-        st[id<<1] += lz[id];
-        st[id<<1|1] += lz[id];
-        lz[id<<1] += lz[id];
-        lz[id<<1|1] += lz[id];
-        lz[id] = 0;
+        st[id<<1] += x;
+        st[id<<1|1] += x;
+        lz[id<<1] += x;
+        lz[id<<1|1] += x;
+        x = 0;
     }
     void upd(int i, int val, int id = 1, int l = 1, int r = n){
         if(l == r){
