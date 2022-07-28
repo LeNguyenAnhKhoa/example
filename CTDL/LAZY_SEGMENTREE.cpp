@@ -14,7 +14,7 @@ struct Lazy_Seg{
     }
     void push(int id, int l, int r){
         int &x = lz[id];
-        if(s == 0)return;
+        if(x == 0)return;
         int mid = l + r >> 1;
         st[id<<1] += x;
         st[id<<1|1] += x;
