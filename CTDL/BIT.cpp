@@ -3,7 +3,7 @@ int n;
 struct BIT{
     int bit[N];
     void add(int i, int x){
-        if(i == 0)return;
+        if(i <= 0)return;
         for(; i <= n; i += i&-i)
             bit[i] += x;
     }
