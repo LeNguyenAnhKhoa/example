@@ -10,7 +10,7 @@ int dfs(int u, int p = 0){
 }
 
 int centroid(int m, int u, int p = 0){
-    for(auto v : a[u])if(!vis[v] && v != p && sz[v] >= m)
+    for(auto v : a[u])if(!vis[v] && v != p && sz[v] > m)
         return centroid(m, v, u);
     return u;
 }
