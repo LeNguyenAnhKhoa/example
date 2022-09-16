@@ -3,7 +3,7 @@ struct edge{
 };
 vector<edge> e;
 vector<int> a[N];
-int n, m, s, t, ne, d[N], cnt, vis[N];
+int n, m, s, t, ne, d[N], cnt, vis[N], cur[N], sz[N];
 void add(int u, int v, int cap){
     e.pb({v, cap, 0});
     e.pb({u, 0, 0});
@@ -31,10 +31,10 @@ bool bfs(){
 }
 int dfs(int u, int pushed){
     if(u == t)return pushed;
-    if(vis[u] == cnt)return 0;
     vis[u] = cnt;
     int res = 0;
-    for(auto id : a[u]){
+    for(; cur[u] < sz[u]; ++cur[u]){
+        int id = a[u][cur[u]];
         if(d[e[id].v] != d[u] + 1)continue;
         if(vis[e[id].v] == cnt)continue;
         if(e[id].flow < e[id].cap){
@@ -48,11 +48,13 @@ int dfs(int u, int pushed){
     return res;
 }
 int maxflow(){
+    FOR(i, 1, n)sz[i] = SZ(a[i]);
     int res = 0;
     while(1){
         if(!bfs())break;
         cnt++;
-        int f = dfs(s, 1e18);
+        memset(cur, 0, sizeof cur);
+        int f = dfs(s, 1e9);
         if(!f)break;
         res += f;
     }
