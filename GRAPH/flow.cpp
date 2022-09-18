@@ -1,12 +1,15 @@
-struct edge{int u, v, cap, flow;};
-int n, s, t, m, cur[N], d[N], c[N][N];
+struct edge{
+    int u, v, cap, flow;
+};
+int n, s, t, m, cur[N], d[N], sz[N], ne;
 vector<int> a[N];
 vector<edge> e;
 void add(int u,int v,int cap){
     edge e1 = {u, v, cap, 0};
     edge e2 = {v, u, 0, 0};
-    a[u].pb(SZ(e)); e.pb(e1);
-    a[v].pb(SZ(e)); e.pb(e2);
+    a[u].pb(ne); e.pb(e1);
+    a[v].pb(ne+1); e.pb(e2);
+    ne += 2;
 }
 bool bfs(){
     queue<int> q;
@@ -25,7 +28,7 @@ bool bfs(){
 int dfs(int u,int val){
     if(!val)return 0;
     if(u == t)return val;
-    for(;cur[u] < SZ(a[u]);++cur[u]){
+    for(; cur[u] < sz[u]; ++cur[u]){
         int i = a[u][cur[u]], v = e[i].v;
         if(d[v] != d[u] + 1)continue;
         int pushed = dfs(v, min(val, e[i].cap - e[i].flow));
@@ -50,7 +53,6 @@ int maxflow(){
     return res;
 }
 void init(){
-    e.clear();
-    FOR(i, 0, 2*n+1)a[i].clear();
-    s = 0, t = 2*n+1;
+    s = 1, t = n;
+    FOR(i, 1, n)sz[i] = SZ(a[i]);
 }
