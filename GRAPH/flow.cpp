@@ -2,10 +2,10 @@ struct maxFLow{
     struct edge{
         int u, v, cap, flow;
     };
-    int n, s, t, m, cur[N], d[N], sz[N], ne;
+    int s, t, cur[N], d[N], sz[N], ne;
     vector<int> a[N];
     vector<edge> e;
-    void add(int u,int v,int cap){
+    void add(int u, int v, int cap){
         edge e1 = {u, v, cap, 0};
         edge e2 = {v, u, 0, 0};
         a[u].pb(ne); e.pb(e1);
@@ -26,7 +26,7 @@ struct maxFLow{
         }
         return d[t] >= 0;
     }
-    int dfs(int u,int val){
+    int dfs(int u, int val){
         if(!val)return 0;
         if(u == t)return val;
         for(; cur[u] < sz[u]; ++cur[u]){
@@ -42,6 +42,7 @@ struct maxFLow{
         return 0;
     }
     int maxflow(){
+        FOR(i, 1, n)sz[i] = SZ(a[i]);
         int res = 0;
         while(bfs()){
             memset(cur, 0, sizeof cur);
@@ -54,7 +55,8 @@ struct maxFLow{
         return res;
     }
     void init(){
-        s = 1, t = n;
-        FOR(i, 1, n)sz[i] = SZ(a[i]);
+        s = 0, t = n+1;
+        FOR(i, 0, n+1)a[i].clear();
+        e.clear(); ne = 0;
     }
 }flow;
