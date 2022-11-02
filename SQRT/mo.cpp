@@ -23,19 +23,19 @@ struct node{
         return ord < a.ord;
     }
 }q[N];
-void add(){
+void add(int x){
     
 }
-void del(){
+void del(int x){
     
 }
 void solve(){
     FOR(i, 1, m){
-        cin >> l >> r;
-        b[i] = {l, r, i, gilbertOrder(l, r)};
+        int l, r; cin >> l >> r;
+        q[i] = {l, r, i, gilbertOrder(l, r)};
     }
-    sort(b + 1, b + 1 + m);
-    l = 1; r = 0;
+    sort(q + 1, q + 1 + m);
+    int l = 1, r = 0;
     FOR(i, 1, m){
         while(l < q[i].l)del(l++);
         while(l > q[i].l)add(--l);
