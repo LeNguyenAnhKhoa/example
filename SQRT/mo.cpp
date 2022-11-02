@@ -23,8 +23,14 @@ struct node{
         return ord < a.ord;
     }
 }q[N];
+void add(){
+    
+}
+void del(){
+    
+}
 void solve(){
-  FOR(i, 1, m){
+    FOR(i, 1, m){
         cin >> l >> r;
         b[i] = {l, r, i, gilbertOrder(l, r)};
     }
