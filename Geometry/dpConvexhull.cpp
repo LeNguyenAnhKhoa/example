@@ -1,3 +1,4 @@
+/// x >= 0
 vector<ii> line;
 /// return max(y) <=> ">"
 /// return min(y) <=> "<"
