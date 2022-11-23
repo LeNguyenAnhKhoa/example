@@ -1,5 +1,4 @@
 typedef long long ll;
-const int N = 2e5 + 5;
 const int S = log2(N)+1;
 ll gilbertOrder(int x, int y){
     ll d = 0;
