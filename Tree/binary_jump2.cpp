@@ -1,6 +1,3 @@
-const int N = 1e5 + 5;
-int n, p[17][N], in[N], out[N], t, l;
-vector<int> a[N];
 void DFS(int u){
     in[u] = ++t;
     FOR(i, 1, l)p[i][u] = p[i-1][p[i-1][u]];
@@ -12,7 +9,7 @@ void init(){
     l = log2(n);
     DFS(1);
     in[0] = -1e9;
-    out[0] = -1e9;
+    out[0] = 1e9;
 }
 bool ck(int u, int v){
     return in[u] <= in[v] && out[v] <= out[u];
