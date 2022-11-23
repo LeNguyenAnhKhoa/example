@@ -1,5 +1,3 @@
-const int N = 1e5 + 5;
-int n;
 struct BIT{
     int bit[N];
     void add(int i, int x){
