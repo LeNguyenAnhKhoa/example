@@ -1,12 +1,10 @@
-/// x >= 0
-vector<ii> line;
-/// return max(y) <=> ">"
-/// return min(y) <=> "<"
+/// return max(y) <=> "<="
+/// return min(y) <=> ">="
 bool cmp(ii a, ii b, ii c){
-    return (double)(c.se - b.se) / (b.fi - c.fi) > (double)(a.se - c.se) / (c.fi - a.fi);
+    return (double)(b.se - a.se) / (a.fi - b.fi) >= (double)(c.se - a.se) / (double)(a.fi - c.fi);
 }
 void add(int a, int b){
-    while(SZ(line) >= 2 && !cmp(line[SZ(line)-2], line.back(), ii(a, b)))line.pop_back();
+    while(SZ(line) >= 2 && cmp(line[SZ(line)-2], line.back(), ii(a, b)))line.pop_back();
     line.pb(a, b);
 }
 int cal(ii x, int a){
