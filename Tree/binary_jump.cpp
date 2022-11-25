@@ -1,6 +1,3 @@
-const int N = 1e5 + 5;
-int n, p[17][N], d[N];
-vector<int> a[N];
 void dfs(int u){
     FOR(i, 1, log2(n))
         p[i][u] = p[i-1][p[i-1][u]];
