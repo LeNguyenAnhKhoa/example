@@ -1,4 +1,3 @@
-#define SZ(x) (int)((x).size())
 struct trie{
     struct node{
         int nx[26], leaf;
