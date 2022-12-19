@@ -1,5 +1,3 @@
-const int N = 1e5 + 5;
-int n;
 struct Lazy_Seg{
     int st[4*N], lz[4*N];
     void build(int id = 1, int l = 1, int r = n){
