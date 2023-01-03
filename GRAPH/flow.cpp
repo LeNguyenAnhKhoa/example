@@ -42,7 +42,7 @@ struct maxFLow{
         return 0;
     }
     int maxflow(){
-        FOR(i, 0, n+1)sz[i] = SZ(a[i]);
+        FOR(i, 0, t)sz[i] = SZ(a[i]);
         int res = 0;
         while(bfs()){
             memset(cur, 0, sizeof cur);
@@ -56,7 +56,7 @@ struct maxFLow{
     }
     void init(){
         s = 0, t = n+1;
-        FOR(i, 0, n+1)a[i].clear();
+        FOR(i, 0, t)a[i].clear();
         e.clear(); ne = 0;
     }
 }flow;
