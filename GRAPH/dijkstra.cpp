@@ -1,18 +1,25 @@
-#define fi first
-#define se second
-typedef pair<int,int> ii;
-const int N = 1e5 + 5;
-int n;
-vector<ii> a[N];
-vector<int> dijkstra(int s){
-    vector<int> d(n+5, 1e9);
-    priority_queue<ii, vector<ii>, greater<ii>> q;
-    q.push({0, s}), d[s] = 0;
+void cal(int s){
+    memset(d, 0x3f, sizeof d);
+    FOR(i, 1, n)f[i] = 2;
+    d[s] = 0;
+    deque<int> q;
+    q.pb(s);
     while(!q.empty()){
-        int u = q.top().se, du = q.top().fi; q.pop();
-        if(du != d[u])continue;
-        for(auto v : a[u])if(d[v.se] > du + v.fi)
-            d[v.se] = du + v.fi, q.push({d[v.se], v.se});
+        int u = q.front();
+        q.pop_front();
+        f[u] = 0;
+        for(auto x : a[u]){
+            int v = x.fi, w = x.se;
+            if(minn(d[v], d[u] + w)){
+                if(f[v] == 2){
+                    f[v] = 1;
+                    q.pb(v);
+                }
+                else if(!f[v]){
+                    f[v] = 1;
+                    q.push_front(v);
+                }
+            }
+        }
     }
-    return d
 }
