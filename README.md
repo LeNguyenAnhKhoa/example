@@ -1,2 +1,1 @@
-# example
-c++
+# Sample Code for DSA
